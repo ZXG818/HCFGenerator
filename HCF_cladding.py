@@ -203,7 +203,7 @@ def Main(plate_cnt, R, r, low, high, diag_radius, axis_raidus, clad_diag_radius,
             #                       CELL CARD                             #
             ###############################################################
             ''' inner HCF model '''
-            string = "%d 1 -2.6807 %d %d %d %d %d -%d & \n" % (cell_cnt, 
+            string = "%d 1 -2.7764 %d %d %d %d %d -%d & \n" % (cell_cnt, 
                       PlatePositive(0, 0, A1, 1.0, -D1)*(original_surface_cnt+0),
                       PlatePositive(0, 0, A2, 1.0, -D2)*(original_surface_cnt+1),
                       PlatePositive(0, 0, A3, 1.0, -D3)*(original_surface_cnt+2),
@@ -224,7 +224,7 @@ def Main(plate_cnt, R, r, low, high, diag_radius, axis_raidus, clad_diag_radius,
             cell_cnt += 1
             
             ''' the HCF cladding model '''
-            string = string + "%d 2 -9.8 (%d %d %d %d %d -%d & \n" % (cell_cnt, 
+            string = string + "%d 3 -2.266 (%d %d %d %d %d -%d & \n" % (cell_cnt, 
                       PlatePositive(0, 0, A1, 1.0, -D1)*(original_surface_cnt+0),
                       PlatePositive(0, 0, A2, 1.0, -D2)*(original_surface_cnt+1),
                       PlatePositive(0, 0, A3, 1.0, -D3)*(original_surface_cnt+2),
@@ -245,7 +245,7 @@ def Main(plate_cnt, R, r, low, high, diag_radius, axis_raidus, clad_diag_radius,
             
             cell_cnt += 1
             
-            string = string + "%d 3 -1.94 -%d %d -%d #%d #%d u=1 imp:n=1\n" % (cell_cnt, 
+            string = string + "%d 2 -1.94 -%d %d -%d #%d #%d u=1 imp:n=1\n" % (cell_cnt, 
                                                                      29000,
                                                                      original_surface_cnt+4, original_surface_cnt+5, 
                                                                      cell_cnt-1, cell_cnt-2)
