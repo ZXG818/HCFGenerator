@@ -32,6 +32,7 @@ def MaterialCard(filename):
 def Main(surface_card_name, cell_card_name, 
          twist_angle, 
          region_type, # dicuss the difference of material in top-bottom and the activated region.
+         universe_number, # use the different number of the TOP_BOTTOM and the ACTIVATED region.
          plate_cnt, R, r, low, high, diag_radius, axis_raidus, clad_diag_radius, clad_axis_radius, 
          surface_cnt, cell_cnt, original_surface_cnt):
     with open(surface_card_name, "a") as f_surface, open(cell_card_name, "a") as f_cell:
@@ -229,11 +230,12 @@ def Main(surface_card_name, cell_card_name,
                       original_surface_cnt+7, original_surface_cnt+4, original_surface_cnt+5,
                       original_surface_cnt+8, original_surface_cnt+4, original_surface_cnt+5,
                       original_surface_cnt+9, original_surface_cnt+4, original_surface_cnt+5)
-            string = string + "     :(-%d %d -%d):(-%d %d -%d): & \n      (-%d %d -%d):(-%d %d -%d) u=1 imp:n=1\n" % (
+            string = string + "     :(-%d %d -%d):(-%d %d -%d): & \n      (-%d %d -%d):(-%d %d -%d) u=%d imp:n=1\n" % (
                       original_surface_cnt+10, original_surface_cnt+4, original_surface_cnt+5,
                       original_surface_cnt+11, original_surface_cnt+4, original_surface_cnt+5,
                       original_surface_cnt+12, original_surface_cnt+4, original_surface_cnt+5,
-                      original_surface_cnt+13, original_surface_cnt+4, original_surface_cnt+5)
+                      original_surface_cnt+13, original_surface_cnt+4, original_surface_cnt+5,
+                      universe_number)
             
             cell_cnt += 1
             
@@ -250,18 +252,20 @@ def Main(surface_card_name, cell_card_name,
                       original_surface_cnt+15, original_surface_cnt+4, original_surface_cnt+5,
                       original_surface_cnt+16, original_surface_cnt+4, original_surface_cnt+5,
                       original_surface_cnt+17, original_surface_cnt+4, original_surface_cnt+5)
-            string = string + "     :(-%d %d -%d):(-%d %d -%d): & \n      (-%d %d -%d):(-%d %d -%d)) #%d u=1 imp:n=1\n" % (
+            string = string + "     :(-%d %d -%d):(-%d %d -%d): & \n      (-%d %d -%d):(-%d %d -%d)) #%d u=%d imp:n=1\n" % (
                       original_surface_cnt+18, original_surface_cnt+4, original_surface_cnt+5,
                       original_surface_cnt+19, original_surface_cnt+4, original_surface_cnt+5,
                       original_surface_cnt+20, original_surface_cnt+4, original_surface_cnt+5,
                       original_surface_cnt+21, original_surface_cnt+4, original_surface_cnt+5,
-                      cell_cnt-1)            
+                      cell_cnt-1,
+                      universe_number)            
             
             cell_cnt += 1
             
-            string = string + "%d 2 -1.94 -29002 29005 -29007 29004 -29006 29003 & \n       %d -%d #%d #%d u=1 imp:n=1\n" % (cell_cnt, 
+            string = string + "%d 2 -1.94 -29002 29005 -29007 29004 -29006 29003 & \n       %d -%d #%d #%d u=%d imp:n=1\n" % (cell_cnt, 
                                                                      original_surface_cnt+4, original_surface_cnt+5, 
-                                                                     cell_cnt-1, cell_cnt-2)
+                                                                     cell_cnt-1, cell_cnt-2,
+                                                                     universe_number)
             
             cell_cnt += 1
             original_surface_cnt += 22
@@ -277,6 +281,7 @@ if __name__ == '__main__':
     surface_cnt, cell_cnt, original_surface_cnt = Main("active_surface.txt", "active_cell.txt",
                                                        360,  # twist angle
                                                        1,    # region type equal one means this region is the activated core.
+                                                       1,    # universe number
                                                        5,    # section numbers
                                                        0.55*math.sqrt(2), 0.55, 
                                                        0,   80,  
@@ -288,6 +293,7 @@ if __name__ == '__main__':
     surface_cnt, cell_cnt, original_surface_cnt = Main("top_surface.txt", "top_cell.txt", 
                                                        90, # twist angle
                                                        0,  # region type is not one means this region is the top or bottom reflector region.
+                                                       101, # universe_number
                                                        5,  # section numbers
                                                        0.55*math.sqrt(2), 0.55, 
                                                        80,   100,  
@@ -299,6 +305,7 @@ if __name__ == '__main__':
     surface_cnt, cell_cnt, original_surface_cnt = Main("bottom_surface.txt", "bottom_cell.txt", 
                                                        90, # twist angle
                                                        0,  # region type is not one means this region is the top or bottom reflector region.
+                                                       201, # universe_number
                                                        5,  # section numbers
                                                        0.55*math.sqrt(2), 0.55, 
                                                        -20,   0,  
