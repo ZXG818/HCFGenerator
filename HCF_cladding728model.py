@@ -289,7 +289,7 @@ if __name__ == '__main__':
                                                        surface_cnt, cell_cnt, original_surface_cnt)
     
     # the top reflector region 
-    surface_cnt, cell_cnt, original_surface_cnt = 5000, 5000, 5000
+    # surface_cnt, cell_cnt, original_surface_cnt = 5000, 5000, 5000
     surface_cnt, cell_cnt, original_surface_cnt = Main("top_surface.txt", "top_cell.txt", 
                                                        90, # twist angle
                                                        0,  # region type is not one means this region is the top or bottom reflector region.
@@ -301,7 +301,7 @@ if __name__ == '__main__':
                                                        surface_cnt, cell_cnt, original_surface_cnt)
     
     # the bottom reflector region 
-    surface_cnt, cell_cnt, original_surface_cnt = 8000, 8000, 8000
+    # surface_cnt, cell_cnt, original_surface_cnt = 8000, 8000, 8000
     surface_cnt, cell_cnt, original_surface_cnt = Main("bottom_surface.txt", "bottom_cell.txt", 
                                                        90, # twist angle
                                                        0,  # region type is not one means this region is the top or bottom reflector region.
