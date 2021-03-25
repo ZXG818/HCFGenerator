@@ -12,7 +12,7 @@ with open("core1o", 'r') as f:
 result = [lines[index+i].strip().split()[0] for i in range(1, 1501, 3)]
 result = '\n'.join(result)
 
-with open("fuck.txt", 'w') as f:
+with open("result.txt", 'w') as f:
     f.write(result)
     
 print("Done!")
